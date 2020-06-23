@@ -24,4 +24,22 @@ docker run -it --rm --network=host -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=$
 
 ## Running with compose (your saved connections may persist on a named volume)
 
-docker-compose up -d
+```
+version: '3.6'
+services:
+  winbox:
+    image: frici/winbox:3.24
+    container_name: winbox
+    restart: on-failure
+    network_mode: host
+    environment:
+      - DISPLAY=:0
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - winboxdata:/winbox/
+volumes:
+  winboxdata:
+    external: false
+
+```
+Afther that run: docker-compose up -d
