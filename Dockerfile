@@ -1,5 +1,5 @@
 FROM alpine:3.12
-ARG WV=3.24
+ARG WV=3.27
 LABEL maintainer="r.fekete16@gmail.com"
 ENV WINEPREFIX=/winbox DISPLAY=:0
 WORKDIR /winbox
