@@ -6,11 +6,11 @@
 
 sudo pacman -S xorg-xhost
 
-### Ubuntu
+### Debian/Ubuntu
 
 sudo apt install x11-xserver-utils
 
-### Centos
+### RHEL/Centos
 
 sudo yum install xorg-x11-server-utils
 
@@ -20,7 +20,7 @@ xhost +local:
 
 ## If you want to just try it out:
 
-docker run -it --rm --network=host -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=$DISPLAY frici/winbox:3.24
+docker run -it --rm --network=host -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=$DISPLAY frici/winbox
 
 ## Running with compose (your saved connections may persist on a named volume)
 
@@ -28,7 +28,7 @@ docker run -it --rm --network=host -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=$
 version: '3.6'
 services:
   winbox:
-    image: frici/winbox:3.24
+    image: frici/winbox
     container_name: winbox
     restart: on-failure
     network_mode: host
@@ -42,4 +42,4 @@ volumes:
     external: false
 
 ```
-Afther that run: docker-compose up -d
+Copy and paste the text above to a file named docker-compose.yml and run: docker-compose up -d
