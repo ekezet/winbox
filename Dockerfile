@@ -1,6 +1,6 @@
-FROM alpine:3.13
+FROM alpine:3.14
 LABEL maintainer="r.fekete16@gmail.com"
-ENV WV=3.27 WINEPREFIX=/winbox DISPLAY=:0
+ENV WV=3.32 WINEPREFIX=/winbox DISPLAY=:0
 WORKDIR /winbox
 ADD https://download.mikrotik.com/routeros/winbox/$WV/winbox64.exe winbox64.exe
 RUN addgroup wine &&  adduser -D -H -u 1000 -s /bin/sh wine -G wine && apk update \
@@ -11,5 +11,5 @@ ADD http://dl.winehq.org/wine/wine-mono/4.9.4/wine-mono-4.9.4.msi /usr/share/win
 ADD http://dl.winehq.org/wine/wine-gecko/2.47/wine_gecko-2.47-x86_64.msi /usr/share/wine/gecko/wine_gecko-2.47-x86_64.msi
 RUN gosu wine:wine sh -c 'wineboot -u'
 VOLUME /tmp/.X11-unix /winbox/
-COPY entrypoint.sh /entrypoint.sh
+COPY --chown=wine:wine entrypoint.sh /entrypoint.sh
 ENTRYPOINT /entrypoint.sh
