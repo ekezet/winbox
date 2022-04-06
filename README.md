@@ -14,7 +14,7 @@
 ### Mac OSX
 `xhost +localhost`
 ## If you want to just try it out:
-`docker run -it --rm --network=host -e DISPLAY=$DISPLAY frici/winbox`
+`docker run -it --rm --network=host --ipc=host -e DISPLAY=$DISPLAY frici/winbox`
 
 docker run -it --rm --network=host -e DISPLAY=host.docker.internal:0 frici/winbox
 ## Running with compose (your saved connections may persist on a named volume)
@@ -29,6 +29,7 @@ services:
     network_mode: host
     environment:
     - DISPLAY=:0
+    - ipc=host
     volumes:
     - /tmp/.X11-unix:/tmp/.X11-unix
     - winboxdata:/winbox/
