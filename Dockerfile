@@ -1,6 +1,6 @@
 FROM alpine:3.13
 LABEL maintainer="r.fekete16@gmail.com"
-ENV WV=3.35 WINEPREFIX=/winbox WINEDLLOVERRIDES="mscoree=" WINEDEBUG=-all DISPLAY=:0
+ENV WV=3.37 WINEPREFIX=/winbox WINEDLLOVERRIDES="mscoree=" WINEDEBUG=-all DISPLAY=:0
 WORKDIR /winbox
 ADD https://download.mikrotik.com/routeros/winbox/$WV/winbox64.exe winbox64.exe
 RUN addgroup wine &&  adduser -D -H -u 1000 -s /bin/sh wine -G wine \
