@@ -1,4 +1,4 @@
-FROM alpine:3.13
+FROM alpine:3.14
 LABEL maintainer="r.fekete16@gmail.com"
 ENV WV=3.37 WINEPREFIX=/winbox WINEDLLOVERRIDES="mscoree=" WINEDEBUG=-all DISPLAY=:0
 WORKDIR /winbox
