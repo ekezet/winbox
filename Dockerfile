@@ -1,7 +1,8 @@
-FROM alpine:3.18
+FROM alpine:3.19
 LABEL maintainer="r.fekete16@gmail.com"
-ENV WV=3.39 WINEPREFIX=/winbox WINEDLLOVERRIDES="mscoree=" WINEDEBUG=-all DISPLAY=:0
+ENV WINEPREFIX=/winbox WINEDLLOVERRIDES="mscoree=" WINEDEBUG=-all DISPLAY=:0
 WORKDIR /winbox
+ARG WV
 ADD https://download.mikrotik.com/routeros/winbox/$WV/winbox64.exe winbox64.exe
 RUN addgroup wine &&  adduser -D -u 1000 -s /bin/sh wine -G wine \
     && apk add --update wine ncurses xvfb-run \

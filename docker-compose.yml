@@ -1,7 +1,6 @@
-version: '3.6'
 services:
   winbox:
-    image: frici/winbox:3.35
+    image: frici/winbox
     container_name: winbox
     restart: on-failure
     network_mode: host
@@ -11,6 +10,3 @@ services:
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
       - winboxdata:/winbox/
-volumes:
-  winboxdata:
-    external: false

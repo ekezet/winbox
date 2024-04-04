@@ -6,25 +6,25 @@ This is a container for running Winbox when you don't want to install wine just 
 
 ## Prerequisites
 
-### **Arch Linux**
+### Arch Linux
 
 ```shell
 sudo pacman -S xorg-xhost
 ```
 
-### **Debian/Ubuntu**
+### Debian/Ubuntu
 
 ```shell
 sudo apt install x11-xserver-utils
 ```
 
-### **RHEL/Centos**
+### RHEL/Centos
 
 ```shell
 sudo yum install xorg-x11-server-utils
 ```
 
-### **Intel based Mac OSX**
+### Intel based Mac OSX
 
 - Install XQuartz: <https://www.xquartz.org>
 - From the XQuartz preferences, in the `security` tab, make sure `Allow connections from network clients` is enabled then restart XQuartz.
@@ -60,7 +60,6 @@ docker run -it --rm --network=host -e DISPLAY=host.docker.internal:0 frici/winbo
 ## Running with compose (your saved connections may persist on a named volume)
 
 ```yaml
-version: "3.6"
 services:
   winbox:
     image: frici/winbox
@@ -75,7 +74,18 @@ services:
       - winboxdata:/winbox/
 volumes:
   winboxdata:
-    external: false
 ```
 
-Copy and paste then `docker-compose up -d`
+Copy and paste then `docker compose up`
+
+## Building with your preferred winbox version
+
+If you can't find your preferred version in dockerhub you can build it for yourself. For example version 3.40:
+
+```shell
+export WV=3.40
+```
+
+```docker
+docker build -f ./Dockerfile -t yourimagename:$WV . --no-cache --build-arg WV=$WV
+```
